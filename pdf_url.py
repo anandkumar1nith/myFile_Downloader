@@ -2,7 +2,7 @@ import requests
 import sys
 
 def main():
- url=sys.argv[1
+ url=sys.argv[1]
 # create a response object
  response=requests.get(url,stream=True)
 
