@@ -1,12 +1,17 @@
 import urllib2
+import sys
 
+arglist=sys.argv
 #
-url="http://www.axmag.com/download/pdfurl-guide.pdf"
+url=arglist[1]
 
 response=urllib2.urlopen(url)
 meta=response.info()
 # file name and file size
-file_name=url.split('/')[-1]
+if len(url.split('/')[-1])>50 :
+ file_name="abc"
+else :
+ file_name=url.split('/')[-1]
 
 
 
@@ -29,9 +34,8 @@ while len(block)>0 :
  file_.write(block)
  complete+=len(block)
  block=response.read(chunk_size)
- downloaded=r"downloaded %10d percent"%((complete*100/file_size))
+ downloaded=r"downloaded %10d Mb of %10d Mb"%((complete/10000,file_size))
  print downloaded
 
 file_.close()
  
-
